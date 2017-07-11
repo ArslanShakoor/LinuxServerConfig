@@ -1,4 +1,4 @@
-#UDACITY LINUX SERVER CONFIGURATION PROJECT
+# UDACITY LINUX SERVER CONFIGURATION PROJECT
 
 YOU CAN ACCESS THE WEBSITE HERE [34.227.143.43
 ](http://34.227.143.43/)
@@ -19,14 +19,14 @@ YOU CAN ACCESS THE WEBSITE HERE [34.227.143.43
 34.227.143.43
 
 
-##Update all currently installed packages
+## Update all currently installed packages
 
 
 `apt-get update` - to update the package indexes
 
 `apt-get upgrade` - to actually upgrade the installed packages
 
-##Now Create a new user named grader
+## Now Create a new user named grader
 first of all create the new user
 
 1: `sudo adduser grader` create user
@@ -37,7 +37,7 @@ first of all create the new user
 
 4:`nano /etc/sudoers.d/grader`, type in `grader ALL=(ALL:ALL) ALL` edit the fill grader
 
-##Set-up SSH keys for user grader
+## Set-up SSH keys for user grader
 
 As root user do:
 
@@ -58,14 +58,14 @@ Can now login as the grader user using the command:
 7: `ssh -i ~/.ssh/private_key.rsa grader@34.227.143.43`
 
 
-##Change the SSH port from 22 to 2200
+## Change the SSH port from 22 to 2200
 
 Use sudo `nano /etc/ssh/sshd_config` and then change Port 22 to Port 2200 , save & quit.
 
 Reload SSH using `sudo service ssh restart`
 
 
-##Configure the Uncomplicated Firewall (UFW)
+## Configure the Uncomplicated Firewall (UFW)
 
 Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
 
@@ -78,13 +78,13 @@ Configure the Uncomplicated Firewall (UFW) to only allow incoming connections fo
 4: `sudo ufw enable`
 
 
-##Change timezone to UTC
+## Change timezone to UTC
 
 Check the timezone with the date command. This will display the current timezone after the time. If it's not UTC change it like this:
 
 `sudo timedatectl set-timezone UTC`
 
-##Install and configure Apache to serve a Python mod_wsgi application
+## Install and configure Apache to serve a Python mod_wsgi application
 
 1: `Install Apache sudo apt-get install apache2`
 
@@ -96,7 +96,7 @@ Check the timezone with the date command. This will display the current timezone
 
 
 
-##Install and configure PostgreSQL
+## Install and configure PostgreSQL
 
 1: Install PostgreSQL sudo apt-get install postgresql
 
@@ -126,7 +126,7 @@ Exit from user "postgres"
 `exit`
 
 
-##Install Flask, SQLAlchemy, etc
+## Install Flask, SQLAlchemy, etc
 
 Issue the following commands:
 
@@ -143,12 +143,12 @@ Issue the following commands:
 6: `sudo pip install flask-seasurf`
 
 
-##Install Git version control software
+## Install Git version control software
 
 `sudo apt-get install git`
 
 
-##Install git, clone and setup your Catalog App project.
+## Install git, clone and setup your Catalog App project.
 
 1: Install Git using `sudo apt-get install git`
 
@@ -180,7 +180,7 @@ Issue the following commands:
 
 
 
-##Configure and Enable a New Virtual Host
+## Configure and Enable a New Virtual Host
 
 Create FlaskApp.conf to edit: `sudo nano /etc/apache2/sites-available/FlaskApp.conf`
 
@@ -206,7 +206,7 @@ Add the following lines of code to the file to configure the virtual host.
 ```
 Enable the virtual host with the following command: `sudo a2ensite FlaskApp`
 
-##Create the .wsgi File
+## Create the .wsgi File
 
 1: Create the .wsgi File under /var/www/FlaskApp:
 
@@ -226,7 +226,7 @@ from FlaskApp import app as application
 application.secret_key = 'Add your secret key'
 ```
 
-##Restart Apache
+## Restart Apache
 
 
 Restart Apache `sudo service apache2 restart`
